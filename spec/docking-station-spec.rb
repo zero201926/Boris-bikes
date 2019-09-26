@@ -5,19 +5,19 @@ describe DockingStation do
     # Arrange
     docking_station = DockingStation.new
     # Act
-    bike = docking_station.release_bike('123')
+    bike_working = docking_station.release_bike('123')
     # Assert
-    expect(docking_station).respond_to?(bike)
+    expect(bike_working).to eq(true)
   end
 
-  it 'bike value is returned' do
-    # Arrange
-    docking_station = DockingStation.new
-    # Act
-    bike = docking_station.release_bike('123')
-    # Assert
-    expect(docking_station).to eq(bike)
-  end
+  # xit 'bike value is returned' do
+  #   # Arrange
+  #   docking_station = DockingStation.new
+  #   # Act
+  #   bike = docking_station.release_bike('123')
+  #   # Assert
+  #   expect(docking_station).to eq(bike)
+  # end
 end
 
 
