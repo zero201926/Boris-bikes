@@ -5,7 +5,7 @@ describe DockingStation do
     # Arrange
     docking_station = DockingStation.new
     # Act
-    bike_working = docking_station.release_bike('123')
+    bike_working = docking_station.release_bike({id: '123', quality: 6})
     # Assert
     expect(bike_working).to eq(true)
   end
@@ -18,6 +18,21 @@ describe DockingStation do
   #   # Assert
   #   expect(docking_station).to eq(bike)
   # end
+
+  it 'bike docks at docking station' do
+    docking_station = DockingStation.new
+    bike_info = Bike.new({id: '987', quality: 5})
+    docking_station.docking(bike_info)
+    expect(docking_station.station_bikes).to include(bike_info)
+
+  end
+
+  it 'removing a bike from docking station' do
+    docking_station = DockingStation.new
+    docking_station.removing
+    expect(docking_station.station_bikes).to raise_error(ErrorClass)
+
+  end
 end
 
 

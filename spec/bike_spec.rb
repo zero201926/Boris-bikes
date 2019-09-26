@@ -3,7 +3,7 @@ require 'main.rb'
 describe Bike do
   it 'working bike' do
     # Arrange
-    bike = Bike.new('123')
+    bike = Bike.new({id: '987', quality: 5})
     # Act
     work = bike.working?
     # Assert
