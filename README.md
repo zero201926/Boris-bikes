@@ -1,4 +1,4 @@
-# boris_bikes
+# boris_bike
 #person
 #bike
 
@@ -14,5 +14,5 @@ user
 customer	 find_by_surname
 person
 bike
-station     release 
+station     release
 quality     working
