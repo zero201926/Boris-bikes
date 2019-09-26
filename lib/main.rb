@@ -8,13 +8,14 @@ class DockingStation
     ]
   end
 
-  def release_bike(info)
-    if station_bikes == nil
-      return false
-    else
-      bike = Bike.new(info)
-      return bike.working?
-    end 
+  def release_bike()
+    begin
+      # bike = Bike.new(info)
+      bike_removed = station_bikes.pop()
+      bike_removed
+    rescue
+      return "No bikes avaliable"
+    end
   end
 
   def docking(info)

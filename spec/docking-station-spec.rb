@@ -1,7 +1,7 @@
 require 'main.rb'
 
 describe DockingStation do
-  it 'instances respond to release_bike' do
+  xit 'instances respond to release_bike' do
     # Arrange
     docking_station = DockingStation.new
     # Act
@@ -19,7 +19,7 @@ describe DockingStation do
   #   expect(docking_station).to eq(bike)
   # end
 
-  it 'bike docks at docking station' do
+  xit 'bike docks at docking station' do
     docking_station = DockingStation.new
     bike_info = Bike.new({id: '987', quality: 5})
     docking_station.docking(bike_info)
@@ -29,8 +29,8 @@ describe DockingStation do
 
   it 'removing a bike from docking station' do
     docking_station = DockingStation.new
-    docking_station.removing
-    expect(docking_station.station_bikes).to raise_error(ErrorClass)
+    docking_station.release_bike()
+    expect(docking_station.station_bikes).to raise_error("No bikes avaliable")
 
   end
 end
