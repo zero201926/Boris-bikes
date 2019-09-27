@@ -1,4 +1,4 @@
-require 'main.rb'
+require 'bike.rb'
 
 describe Bike do
   it 'working bike' do
