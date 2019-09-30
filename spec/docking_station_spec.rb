@@ -62,8 +62,7 @@ describe DockingStation do
       # Assert
       expect(subject.bike).to eq(bike)
     end
- end
-end
+  end
   describe 'initialize' do
     it 'sets a default capcity' do
       expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
