@@ -42,8 +42,9 @@ describe DockingStation do
     it 'raise: full docking station' do
       # docking_station = DockingStation.new
       # docking_station.docking
-      20.times { subject.docking Bike.new}
+      subject.capacity.times { subject.docking Bike.new }
       # subject.docking(Bike.new)
+
       expect {subject.docking Bike.new}.to raise_error("docking station is full")
     end
 
@@ -55,6 +56,11 @@ describe DockingStation do
       subject.docking(bike)
       # Assert
       expect(subject.bike).to eq(bike)
+    end
+  end
+  describe 'initialize' do
+    it 'sets a default capcity' do
+      expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
     end
   end
 end
