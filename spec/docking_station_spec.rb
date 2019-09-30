@@ -3,8 +3,12 @@ require 'docking_station.rb'
 describe DockingStation do
   describe '#release_bike' do
     it { is_expected.to respond_to(:release_bike)}
-
+    it 'does not allow release of broken bike' do
+      subject.release_bike
+      expect(@broken).to eq(:false)
+    end
     it 'release a bike' do
+
       bike = Bike.new
       subject.docking(bike)
       # bike = subject.release_bike
@@ -32,7 +36,8 @@ describe DockingStation do
   # end
   describe '#docking:' do
     it { is_expected.to respond_to(:docking).with(1).argument}
-
+    # it 'allows return of broken bike'
+    # end
     it 'bike docks at docking station' do
       # docking_station = DockingStation.new
       bike = Bike.new#({id: '987', quality: 5})
@@ -57,8 +62,8 @@ describe DockingStation do
       # Assert
       expect(subject.bike).to eq(bike)
     end
-  end
-
+ end
+end
   describe 'initialize' do
     it 'sets a default capcity' do
       expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
@@ -68,7 +73,7 @@ describe DockingStation do
       docking_station = DockingStation.new(50)
       50.times { docking_station.docking Bike.new }
       expect {docking_station.docking Bike.new}.to raise_error("docking station is full")
-
+    end
 #       describe 'initialization' do
 #   subject { DockingStation.new }
 #   let(:bike) { Bike.new }
@@ -79,7 +84,6 @@ describe DockingStation do
 #     expect{ subject.dock(bike) }.to raise_error 'Docking station full'
 #   end
 # end
-    end
   end
 end
 

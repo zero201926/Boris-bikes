@@ -28,7 +28,9 @@ class DockingStation
 
   def docking(bike)
     fail 'docking station is full' if full?
+    if bike
     bikes << bike
+
     # station_bikes.push(bike.bike_info)
   end
 

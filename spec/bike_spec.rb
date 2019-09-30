@@ -12,4 +12,8 @@ describe Bike do
     # expect(work).to eq(true)
     expect(subject).to respond_to :working?
   end
+  it 'Can be reported broken' do
+    subject.report_broken
+    expect(subject).to be_broken
+  end
 end
