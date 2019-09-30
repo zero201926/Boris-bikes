@@ -1,14 +1,16 @@
 class DockingStation
   DEFAULT_CAPACITY = 20
-  attr_reader :station_bikes
-  attr_reader :capacity
+  attr_reader :bikes
+  # attr_reader :capacity
+  attr_accessor :capacity
   # def bike
   #   @station_bikes
   # end
 
-  def initialize
-    @capacity = DEFAULT_CAPACITY
-    @station_bikes = []
+  def initialize(capacity=DEFAULT_CAPACITY)
+    @capacity = capacity
+    # @capacity = DEFAULT_CAPACITY
+    @bikes = []
       # {id: '123', quality: 6}#,
       # {id: '456', quality: 3},
       # {id: '789', quality: 10}
@@ -21,17 +23,17 @@ class DockingStation
     # Bike.new
     # bike_removed = station_bikes.pop()
     # bike_removed
-    @station_bikes.pop #= bike
+    bikes.pop #= bike
   end
 
   def docking(bike)
     fail 'docking station is full' if full?
-    @station_bikes << bike
+    bikes << bike
     # station_bikes.push(bike.bike_info)
   end
 
   def full?
-    if @station_bikes.count >= DEFAULT_CAPACITY
+    if bikes.count >= capacity
       return true
     else
       return false
@@ -39,7 +41,7 @@ class DockingStation
   end
 
   def empty?
-    if @station_bikes.empty?
+    if bikes.empty?
       return true
     else
       return false
