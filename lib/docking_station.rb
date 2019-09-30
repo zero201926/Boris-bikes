@@ -20,6 +20,7 @@ class DockingStation
   def release_bike
     # Bike.new
     fail 'No bikes available' if empty?
+    fail 'bike is broken' if @broken == true
     # Bike.new
     # bike_removed = station_bikes.pop()
     # bike_removed
@@ -28,7 +29,7 @@ class DockingStation
 
   def docking(bike)
     fail 'docking station is full' if full?
-    bike
+    # bike
     bikes << bike
 
     # station_bikes.push(bike.bike_info)
@@ -43,6 +44,7 @@ class DockingStation
   end
 
   def empty?
+    # puts bikes
     if bikes.empty?
       return true
     else

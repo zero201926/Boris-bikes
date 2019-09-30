@@ -3,18 +3,25 @@ require 'docking_station.rb'
 describe DockingStation do
   describe '#release_bike' do
     it { is_expected.to respond_to(:release_bike)}
-    it 'does not allow release of broken bike' do
-      subject.release_bike
-      expect(@broken).to eq(:false)
-    end
-    it 'release a bike' do
 
+
+    it 'does not allow release of broken bike' do
+      # subject.release_bike
+      # expect(@broken).to eq(:false)
+      docking_station = DockingStation.new
+      bike = Bike.new
+      docking_station.docking(bike)
+      bike.report_broken
+      expect{subject.release_bike}.to raise_error{"bike is broken"}
+    end
+
+
+    it 'release a bike' do
       bike = Bike.new
       subject.docking(bike)
       # bike = subject.release_bike
       expect(subject.release_bike).to eq bike
     end
-
     it 'raise: removing a bike from empty docking station' do
       # docking_station = DockingStation.new
       # docking_station.release_bike
@@ -22,8 +29,6 @@ describe DockingStation do
       expect{subject.release_bike}.to raise_error{"No bikes avaliable"}
     end
   end
-
-
 # same as above^^^^^^^^^^^^^^^^^^^^^^^^^
   # xit 'responds to release_bike' do
   #   # # Arrange
@@ -43,31 +48,29 @@ describe DockingStation do
       bike = Bike.new#({id: '987', quality: 5})
       expect(subject.docking(bike)).to eq [bike]
     end
-
     it 'raise: full docking station' do
       # docking_station = DockingStation.new
       # docking_station.docking
       subject.capacity.times { subject.docking Bike.new }
       # subject.docking(Bike.new)
-
       expect {subject.docking Bike.new}.to raise_error("docking station is full")
     end
 
-    xit 'bike is returned to docking station' do
-      # Arrange
-      # docking_station = DockingStation.new
-      # Act
+    it 'bike is returned to docking station' do
       bike = Bike.new
-      subject.docking(bike)
-      # Assert
-      expect(subject.bike).to eq(bike)
+      docking_station = DockingStation.new
+      docking_station.docking(bike)
+      docking_station.release_bike
+      bike.report_broken
+      docking_station.docking(bike)
+      expect().to eq(bike)
     end
   end
+
   describe 'initialize' do
     it 'sets a default capcity' do
       expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
     end
-
     it 'capacity should be variable' do
       docking_station = DockingStation.new(50)
       50.times { docking_station.docking Bike.new }
@@ -85,6 +88,3 @@ describe DockingStation do
 # end
   end
 end
-
-# a) gets a bike, and then b) expects the bike to be working
-#  Make this test pass
