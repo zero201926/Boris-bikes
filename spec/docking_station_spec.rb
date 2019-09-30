@@ -62,8 +62,7 @@ describe DockingStation do
       docking_station.docking(bike)
       docking_station.release_bike
       bike.report_broken
-      docking_station.docking(bike)
-      expect().to eq(bike)
+      expect(docking_station.docking(bike)).to include bike
     end
   end
 
