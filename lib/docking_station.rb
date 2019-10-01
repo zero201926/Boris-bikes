@@ -51,4 +51,11 @@ class DockingStation
       return false
     end
   end
+
+  def broken_bikes_to_be_fixed
+    @broken_bikes = []
+    bikes.collect! { |bike| @broken_bikes << bike if bike.broken? }
+    @broken_bikes
+  end
+
 end

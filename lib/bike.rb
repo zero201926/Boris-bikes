@@ -8,7 +8,7 @@ class Bike
     # if @bike_info[:quality] >= 5
     #   return true
     # end
-    true
+   @broken = false
   end
 
   def report_broken
@@ -17,5 +17,9 @@ class Bike
 
   def broken?
     @broken
+  end
+
+  def report_working
+    @broken = false
   end
 end
